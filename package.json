@@ -2,10 +2,12 @@
   "name": "blog",
   "version": "1.0.0",
   "description": "im learning nodejs",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "nodemon --inspect index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "beautify": "lint-staged",
+    "start": "nodemon --inspect src\\index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "sass --watch src/resources/scss:src/public/css/ --no-source-map"
   },
   "repository": {
     "type": "git",
@@ -17,10 +19,25 @@
     "url": "https://github.com/bleuucheese/blog-f8-learning/issues"
   },
   "homepage": "https://github.com/bleuucheese/blog-f8-learning#readme",
+  "lint-staged": {
+    "src\\**\\*.{js,json,scss}": "prettier --write --single-quote --trailing-comma all --tab-width 4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "dependencies": {
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "express-handlebars": "^8.0.1",
+    "mongoose": "^8.5.4"
   },
   "devDependencies": {
-    "nodemon": "^3.1.4"
+    "husky": "^9.1.5",
+    "lint-staged": "^15.2.9",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.4",
+    "prettier": "^3.3.3",
+    "sass": "^1.77.8"
   }
 }
